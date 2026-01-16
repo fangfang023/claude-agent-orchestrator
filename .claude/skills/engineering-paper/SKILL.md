@@ -184,7 +184,7 @@ tools: Read, Write, Edit
 
 ## 输出要求
 
-- **字数要求**：不少于5000字
+- **字数要求**：不少于8000字
 - **输出格式**：JSON格式
 ```json
 {
@@ -206,7 +206,7 @@ tools: Read, Write, Edit
 ## 输出规范
 
 - **格式**：Markdown (.md)
-- **命名**：`engineering_paper_[项目名称]_[YYYYMMDD].md`
+- **命名**：`工程论文_[项目名称]_[YYYYMMDD].md`
 - **编码**：UTF-8
 - **位置**：`./generated_docs/`
 
