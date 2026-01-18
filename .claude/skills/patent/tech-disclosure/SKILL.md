@@ -7,6 +7,15 @@ description: 生成符合中国专利申请标准的技术交底书。强制进�
 
 本技能提供结构化的工作流程，指导用户创建符合中国专利申请标准的技术交底书。
 
+## 相关技能
+
+- **patent-innovation-assessment-report**: 专利创新评估（技术交底书完成后评估专利性）
+- **business-analysis**: 商业价值评估与专利布局分析
+- **ip-strategy**: 全方位IP保护策略
+- **patent-writing**: 专利申请文件撰写
+
+---
+
 ## 何时使用此工作流
 
 **触发条件：**

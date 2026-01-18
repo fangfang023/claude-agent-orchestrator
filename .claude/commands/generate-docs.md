@@ -106,13 +106,22 @@ Agent 完成后，将其返回的结果直接展示给用户。
 `generate-docs-agent` 支持以下功能：
 
 ### 文档类型
-| 类型 | 对应 Skill |
-|-----|-----------|
-| 技术方案 | tech-solution |
-| 技术交底书 | tech-disclosure |
-| 权利要求书 | patent-writing |
-| 商业分析 | business-analysis |
-| 工程论文 | doc-gen |
+| 类型 | 对应 Skill | 类别 |
+|-----|-----------|------|
+| 技术方案 | tech-solution | 技术 |
+| 技术交底书 | tech-disclosure | 专利 |
+| 权利要求书 | patent-writing | 专利 |
+| 商业分析 | business-analysis | 专利 |
+| 工程论文 | engineering-paper | 论文 |
+| 经济论文 | economy-paper | 论文 |
+| 科学论文 | science-paper | 论文 |
+| 专利创新评估 | patent-innovation-assessment-report | 专利 |
+| IP保护策略 | ip-strategy | 专利 |
+| 价值主张报告 | value-proposition | 技术 |
+| 立论白皮书 | thesis-doc | 技术 |
+| 项目可行性评估 | project-feasibility-assessment-report | 技术 |
+| 伦理风险评估 | ethics-report | 技术 |
+| 合规标准策略 | standard-doc | 技术 |
 
 ### 执行模式
 | 模式 | 说明 |

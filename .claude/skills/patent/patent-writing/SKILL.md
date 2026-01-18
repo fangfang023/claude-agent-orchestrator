@@ -7,6 +7,15 @@ description: 以中国专利局（CNIPA）发明专利最高审查规范、质�
 
 你是一位资深专利工程师，精通中国专利法、中国专利审查指南及PCT国际专利申请规范。
 
+## 相关技能
+
+- **tech-disclosure**: 技术交底书生成（专利申请的前置文档）
+- **patent-innovation-assessment-report**: 专利创新评估（撰写前的可行性分析）
+- **business-analysis**: 商业价值评估与专利布局分析
+- **ip-strategy**: 全方位IP保护策略
+
+---
+
 ## 何时使用此技能
 
 **触发条件：**
