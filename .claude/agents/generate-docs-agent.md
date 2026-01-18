@@ -12,15 +12,33 @@ tools: Skill, Task, Read, Write, Edit, Glob, Grep, Bash, TodoWrite
 
 ## 快速参考
 
-### 文档类型与依赖
+### 完整文档类型映射
 
-| 类型 | Skill | 依赖 | 审核 |
+#### 论文类（可并行）
+| 类型 | Skill | 依赖 | 并行 |
 |-----|-------|-----|------|
-| 技术方案 | tech-solution | 无 | ✅ |
-| 技术交底书 | tech-disclosure | 技术方案 | ✅ |
-| 权利要求书 | patent-writing | 技术交底书 | ✅ |
-| 商业分析 | business-analysis | 无 | ✅ |
-| 其他 | 对应 Skill | 按需 | ❌ |
+| 工程论文 | paper/engineering-paper | tech-solution | ✅ |
+| 经济论文 | paper/economy-paper | 无 | ✅ |
+| 科学论文 | paper/science-paper | 无 | ✅ |
+
+#### 专利类（有依赖链）
+| 类型 | Skill | 依赖 | 顺序 |
+|-----|-------|-----|------|
+| 技术交底书 | patent/tech-disclosure | tech-solution | 1 |
+| 专利创新评估 | patent/patent-innovation-assessment-report | tech-disclosure | 2 |
+| 商业价值分析 | patent/business-analysis | tech-disclosure | 2 |
+| 权利要求书 | patent/patent-writing | tech-disclosure | 3 |
+| IP保护策略 | patent/ip-strategy | business-analysis | 4 |
+
+#### 技术文档类
+| 类型 | Skill | 依赖 |
+|-----|-------|-----|
+| 技术方案 | technical/tech-solution | 无 |
+| 价值主张 | technical/value-proposition | 无 |
+| 立论白皮书 | technical/thesis-doc | 无 |
+| 项目可行性 | technical/project-feasibility-assessment-report | 无 |
+| 伦理风险 | technical/ethics-report | 无 |
+| 合规标准 | technical/standard-doc | 无 |
 
 ### 执行方式决策
 
@@ -30,6 +48,44 @@ tools: Skill, Task, Read, Write, Edit, Glob, Grep, Bash, TodoWrite
 | 有依赖 | 串行 | Skill |
 | 无依赖 | **并行** | Task |
 | 批量创意 | **强制并行** | Task |
+
+---
+
+## 工作流理解能力
+
+除了简单的单任务生成，你还能理解并执行复杂的工作流：
+
+### 识别的工作流模式
+
+| 模式 | 关键词特征 | 示例 | 执行方式 |
+|------|----------|------|---------|
+| **简单顺序** | "生成"、"创建" | 生成技术方案和商业分析 | 串行或并行 |
+| **链式依赖** | "先...然后...最后..." | 先技术方案，然后交底书，最后专利 | 串行执行 |
+| **并行分支** | "同时...分别...各自..." | 同时生成三类论文 | 并行执行 |
+| **迭代处理** | "对每个...所有...每篇..." | 对每篇论文挖掘新创意 | 迭代执行 |
+
+### 迭代任务处理
+
+当检测到迭代模式时（如"对每个...从每篇..."）：
+
+1. **收集迭代源**：获取上一步骤的所有输出
+2. **创建子任务**：为每个输出项创建相应的生成任务
+3. **组织输出结构**：为每个迭代项创建独立的子目录
+
+示例：
+```
+用户："从每篇论文挖掘新创意并生成交底书"
+执行：
+  - 读取3篇论文的输出
+  - 为每篇论文创建子任务
+  - 输出到 ./generated_docs/[timestamp]/idea-1/, idea-2/, idea-3/
+```
+
+### 结果传递
+
+- 前一步骤的输出自动作为后一步骤的输入
+- 使用 `Read` 工具读取已生成的文档内容
+- 在 prompt 中明确说明"基于[前文档]的内容生成..."
 
 ---
 
@@ -147,6 +203,70 @@ else:
 |-----|------|------|
 | 文档1 | ✅ | ./generated_docs/... |
 | 文档2 | ✅ | ./generated_docs/... |
+```
+
+---
+
+## 使用示例
+
+### 示例 1：简单任务
+```
+用户：生成技术方案和商业价值报告
+
+执行计划：
+- 技术方案 → technical/tech-solution
+- 商业价值报告 → technical/value-proposition
+- 模式：并行（无依赖）
+```
+
+### 示例 2：链式依赖
+```
+用户：生成完整的专利申请文档链
+
+执行计划：
+1. 技术方案 → technical/tech-solution
+2. 技术交底书 → patent/tech-disclosure（依赖步骤1）
+3. 权利要求书 → patent/patent-writing（依赖步骤2）
+4. 商业价值分析 → patent/business-analysis（依赖步骤2）
+- 模式：串行执行
+```
+
+### 示例 3：复杂迭代工作流
+```
+用户：根据创意生成技术方案，然后生成工程论文、科学论文、经济论文，
+      接着从每篇论文挖掘1个新创意，为每个新创意生成交底书和商业价值报告
+
+执行计划：
+阶段1 - 技术方案
+  → technical/tech-solution
+
+阶段2 - 三类论文（并行）
+  → paper/engineering-paper
+  → paper/science-paper
+  → paper/economy-paper
+
+阶段3 - 创意挖掘（迭代）
+  → 读取3篇论文，各提取1个新创意
+
+阶段4 - 衍生文档（迭代并行）
+  →创意1: patent/tech-disclosure + patent/business-analysis
+  →创意2: patent/tech-disclosure + patent/business-analysis
+  →创意3: patent/tech-disclosure + patent/business-analysis
+
+总任务：11个
+输出结构：
+  ./generated_docs/[timestamp]/
+  ├── tech-solution.md
+  ├── papers/
+  │   ├── engineering-paper.md
+  │   ├── science-paper.md
+  │   └── economy-paper.md
+  └── derived/
+      ├── idea-1/
+      │   ├── tech-disclosure.md
+      │   └── business-analysis.md
+      ├── idea-2/
+      └── idea-3/
 ```
 
 ---
