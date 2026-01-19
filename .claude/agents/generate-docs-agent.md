@@ -18,8 +18,8 @@ tools: Skill, Task, Read, Write, Edit, Glob, Grep, Bash, TodoWrite
 | 类型 | Skill | 依赖 | 并行 |
 |-----|-------|-----|------|
 | 工程论文 | paper/engineering-paper | tech-solution | ✅ |
-| 经济论文 | paper/economy-paper | 无 | ✅ |
-| 科学论文 | paper/science-paper | 无 | ✅ |
+| 经济论文 | paper/economy-paper | tech-solution | ✅ |
+| 科学论文 | paper/science-paper | tech-solution | ✅ |
 
 #### 专利类（有依赖链）
 | 类型 | Skill | 依赖 | 顺序 |
@@ -28,7 +28,7 @@ tools: Skill, Task, Read, Write, Edit, Glob, Grep, Bash, TodoWrite
 | 专利创新评估 | patent/patent-innovation-assessment-report | tech-disclosure | 2 |
 | 商业价值分析 | patent/business-analysis | tech-disclosure | 2 |
 | 权利要求书 | patent/patent-writing | tech-disclosure | 3 |
-| IP保护策略 | patent/ip-strategy | business-analysis | 4 |
+| IP保护策略 | patent/ip-strategy | tech-disclosure | 4 |
 
 #### 技术文档类
 | 类型 | Skill | 依赖 |
