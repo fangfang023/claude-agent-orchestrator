@@ -1,0 +1,27 @@
+{
+  "editor": "vim",
+  "autoConfirm": "dangerouslyAllowSearch",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/workspace/.claude/hooks/session-start-loader.sh"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Task",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/workspace/.claude/hooks/subagent-context-injector.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
