@@ -20,28 +20,31 @@ Task subagent_type="generate-docs-agent" prompt="生成文档：[创意描述]"
 ## 可用 Skills
 
 ### 技术文档
-- **tech-solution**: 技术方案生成
-- **value-proposition**: 价值主张文档
-- **thesis-doc**: 立论白皮书
-- **project-feasibility-assessment-report**: 项目可行性评估
-- **ethics-report**: 伦理风险评估
-- **standard-doc**: 合规标准策略
+- **technical-tech-solution**: 技术方案生成
+- **technical-value-proposition**: 价值主张文档
+- **technical-thesis-doc**: 立论白皮书
+- **technical-project-feasibility-assessment-report**: 项目可行性评估
+- **technical-ethics-report**: 伦理风险评估
+- **technical-standard-doc**: 合规标准策略
 
 ### 专利文档
-- **tech-disclosure**: 技术交底书
-- **patent-writing**: 权利要求书
-- **patent-innovation-assessment-report**: 专利创新评估
-- **business-analysis**: 商业价值分析
-- **ip-strategy**: IP 保护策略
+- **patent-tech-disclosure**: 技术交底书
+- **patent-patent-writing**: 权利要求书
+- **patent-patent-innovation-assessment-report**: 专利创新评估
+- **patent-business-analysis**: 商业价值分析
+- **patent-ip-strategy**: IP 保护策略
 
 ### 学术论文
-- **engineering-paper**: 工程论文
-- **science-paper**: 科学论文
-- **economy-paper**: 经济论文
+- **paper-engineering-paper**: 工程论文
+- **paper-science-paper**: 科学论文
+- **paper-economy-paper**: 经济论文
+
+### 工具类
+- **utils-document-reviewer**: 通用文档审核，支持循环改进机制
 
 使用方式：
 ```
-Skill skill="tech-solution" args='{"idea": "..."}'
+Skill skill="technical-tech-solution" args='{"idea": "..."}'
 ```
 
 ## 文档生成路径规则
