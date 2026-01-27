@@ -17,28 +17,28 @@ tools: Skill, Task, Read, Write, Edit, Glob, Grep, Bash, TodoWrite
 #### 论文类（可并行）
 | 类型 | Skill | 依赖 | 并行 |
 |-----|-------|-----|------|
-| 工程论文 | paper/engineering-paper | tech-solution | ✅ |
-| 经济论文 | paper/economy-paper | tech-solution | ✅ |
-| 科学论文 | paper/science-paper | tech-solution | ✅ |
+| 工程论文 | paper-engineering-paper | technical-tech-solution | ✅ |
+| 经济论文 | paper-economy-paper | technical-tech-solution | ✅ |
+| 科学论文 | paper-science-paper | technical-tech-solution | ✅ |
 
 #### 专利类（有依赖链）
 | 类型 | Skill | 依赖 | 顺序 |
 |-----|-------|-----|------|
-| 技术交底书 | patent/tech-disclosure | tech-solution | 1 |
-| 专利创新评估 | patent/patent-innovation-assessment-report | tech-disclosure | 2 |
-| 商业价值分析 | patent/business-analysis | tech-disclosure | 2 |
-| 权利要求书 | patent/patent-writing | tech-disclosure | 3 |
-| IP保护策略 | patent/ip-strategy | tech-disclosure | 4 |
+| 技术交底书 | patent-tech-disclosure | technical-tech-solution | 1 |
+| 专利创新评估 | patent-patent-innovation-assessment-report | patent-tech-disclosure | 2 |
+| 商业价值分析 | patent-business-analysis | patent-tech-disclosure | 2 |
+| 权利要求书 | patent-patent-writing | patent-tech-disclosure | 3 |
+| IP保护策略 | patent-ip-strategy | patent-tech-disclosure | 4 |
 
 #### 技术文档类
 | 类型 | Skill | 依赖 |
 |-----|-------|-----|
-| 技术方案 | technical/tech-solution | 无 |
-| 价值主张 | technical/value-proposition | 无 |
-| 立论白皮书 | technical/thesis-doc | 无 |
-| 项目可行性 | technical/project-feasibility-assessment-report | 无 |
-| 伦理风险 | technical/ethics-report | 无 |
-| 合规标准 | technical/standard-doc | 无 |
+| 技术方案 | technical-tech-solution | 无 |
+| 价值主张 | technical-value-proposition | 无 |
+| 立论白皮书 | technical-thesis-doc | 无 |
+| 项目可行性 | technical-project-feasibility-assessment-report | 无 |
+| 伦理风险 | technical-ethics-report | 无 |
+| 合规标准 | technical-standard-doc | 无 |
 
 ### 执行方式决策
 
@@ -214,8 +214,8 @@ else:
 用户：生成技术方案和商业价值报告
 
 执行计划：
-- 技术方案 → technical/tech-solution
-- 商业价值报告 → technical/value-proposition
+- 技术方案 → technical-tech-solution
+- 商业价值报告 → technical-value-proposition
 - 模式：并行（无依赖）
 ```
 
@@ -224,10 +224,10 @@ else:
 用户：生成完整的专利申请文档链
 
 执行计划：
-1. 技术方案 → technical/tech-solution
-2. 技术交底书 → patent/tech-disclosure（依赖步骤1）
-3. 权利要求书 → patent/patent-writing（依赖步骤2）
-4. 商业价值分析 → patent/business-analysis（依赖步骤2）
+1. 技术方案 → technical-tech-solution
+2. 技术交底书 → patent-tech-disclosure（依赖步骤1）
+3. 权利要求书 → patent-patent-writing（依赖步骤2）
+4. 商业价值分析 → patent-business-analysis（依赖步骤2）
 - 模式：串行执行
 ```
 
@@ -238,20 +238,20 @@ else:
 
 执行计划：
 阶段1 - 技术方案
-  → technical/tech-solution
+  → technical-tech-solution
 
 阶段2 - 三类论文（并行）
-  → paper/engineering-paper
-  → paper/science-paper
-  → paper/economy-paper
+  → paper-engineering-paper
+  → paper-science-paper
+  → paper-economy-paper
 
 阶段3 - 创意挖掘（迭代）
   → 读取3篇论文，各提取1个新创意
 
 阶段4 - 衍生文档（迭代并行）
-  →创意1: patent/tech-disclosure + patent/business-analysis
-  →创意2: patent/tech-disclosure + patent/business-analysis
-  →创意3: patent/tech-disclosure + patent/business-analysis
+  →创意1: patent-tech-disclosure + patent-business-analysis
+  →创意2: patent-tech-disclosure + patent-business-analysis
+  →创意3: patent-tech-disclosure + patent-business-analysis
 
 总任务：11个
 输出结构：
